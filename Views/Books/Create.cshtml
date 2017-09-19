@@ -1,0 +1,33 @@
+﻿@model mvcdemo.Models.Book
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+
+         <label>Title</label> <br/>
+         @Html.EditorFor(model => model.Title)
+         <p></p>
+
+        <label>Price</label> <br />
+        <input type="number" name="Price" id="Price"/>
+        <p></p>
+
+        <label>Subject </label> <br />
+        @Html.EditorFor(model => model.Subject)
+        <p></p>
+        <input type="submit" value="Add Book"/>
+    }
+
+</body>
+</html>

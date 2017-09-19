@@ -1,0 +1,19 @@
+﻿@model mvcdemo.Models.Book
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Book Info</title>
+</head>
+<body>
+     <h2>Book Info</h2>
+     <h3>@Model.Title</h3>
+     <h4>@Model.Price.ToString("c")</h4>
+</body>
+</html>

@@ -16,6 +16,11 @@ namespace mvcdemo.Controllers
             return View();
         }
 
+        public string Greet()
+        {
+            return "Hello!";
+        }
+
 
         public ActionResult About()
         {
