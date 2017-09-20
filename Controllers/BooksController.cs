@@ -33,15 +33,19 @@ namespace mvcdemo.Controllers
         public ActionResult Create()
         {
             var book = new Book();
+            book.Price = 200;
+            book.Subject = "ASP";
             return View(book);
         }
 
         [HttpPost]
         public ActionResult Create(Book book)
         {
-            // process book object 
+            if (book.Subject.ToUpper() == "ASP" && book.Price < 200)
+                ModelState.AddModelError("", "Invalid price for selected subject!");
 
-            // return View("Added",book);
+            if (!ModelState.IsValid)
+                return View(book);
 
             return RedirectToAction("List");
         }
