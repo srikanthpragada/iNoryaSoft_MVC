@@ -1,0 +1,60 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        function showTime() {
+            $.get("/Ajax/Now", {},
+                function (result) {
+                    $("#time").text(result);
+                }
+            );
+        }
+
+        function startAjax() {
+            $("#books").empty();
+        }
+    </script>
+</head>
+<body>
+    <button onclick="showTime()">Show Time With jQuery</button>
+    <p></p>
+    <h2 id="time"></h2>
+
+    <p></p>
+    @Ajax.ActionLink("Show Time with Ajax Helper","Now",
+          new AjaxOptions { UpdateTargetId = "time2" } )
+
+    <p></p>
+    <h2 id="time2"></h2>
+
+    @using (Ajax.BeginForm("Search",
+         new AjaxOptions
+          {  LoadingElementId ="loading",
+             UpdateTargetId = "books",
+             // Confirm = "Do you want to search???",
+             OnBegin="startAjax()"
+         }
+    ))
+    {
+        <input type="text" name="pattern"/> 
+        <input type="submit" value="Search"/>
+        <p></p>
+        <div id="loading" style="display:none">Processing...</div>
+        <p></p>
+        <div id="books">
+
+        </div>
+    }
+
+</body>
+</html>
