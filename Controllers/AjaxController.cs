@@ -23,12 +23,16 @@ namespace mvcdemo.Controllers
 
         public  ActionResult Search(string pattern)
         {
-            Thread.Sleep(2000);
+            // Thread.Sleep(2000);
             var books = BookRepository.GetBooks();
             var selbooks = books.Where(b => b.Title.Contains(pattern));
 
-            return PartialView("_books", selbooks); 
+            //if (selbooks.Count() > 0)
+            //    return PartialView("_books", selbooks);
+            //else
+            //    return Content("<h2>Sorry! No books found</h2>");
 
+            return PartialView("_books", selbooks);
         }
     }
 }

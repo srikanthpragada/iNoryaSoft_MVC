@@ -29,7 +29,8 @@ namespace mvcdemo.Controllers
             if (books == null) {
                 books = BookRepository.GetBooks();
                 ViewBag.Message = "Cache Created!";
-                HttpContext.Cache.Insert("books", books , null, DateTime.Now.AddMinutes(2), TimeSpan.Zero);
+                HttpContext.Cache.Insert("books", books , null, 
+                        DateTime.Now.AddMinutes(2), TimeSpan.Zero);
             }
             else
                 ViewBag.Message = "Cache Being Used!";

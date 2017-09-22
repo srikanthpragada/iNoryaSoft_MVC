@@ -8,7 +8,7 @@ namespace mvcdemo.Controllers
 {
     public class HelloController : Controller
     {
-        // GET: Hello
+        [Authorize]
         public ActionResult Index()
         {
             ViewBag.Today = DateTime.Now.ToLongDateString();
