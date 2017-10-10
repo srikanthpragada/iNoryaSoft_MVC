@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <h1  class="text-danger">Courses By Srikanth Technologies</h1>
+    <p></p>
+        [@Html.ActionLink("Home","Index")]
+        &nbsp;
+        [@Html.ActionLink("Add Course", "Create")]
+    <p></p>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
