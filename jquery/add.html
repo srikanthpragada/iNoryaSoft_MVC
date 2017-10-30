@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="../Scripts/jquery-1.10.2.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#b1").click(add2);
+            $("#b2").click(reset);
+
+            $("#b3").click(
+                function () {
+                    console.log(this);
+                    console.log($(this));
+                }
+            );
+
+        });
+
+        function add() {
+            var num1 = document.getElementById("num1");
+            var num2 = document.getElementById("num2");
+            var result = document.getElementById("result");
+
+            result.innerText = parseInt(num1.value) +  parseInt(num2.value);
+        }
+
+        function add2() {
+
+            if ($("#num1").length == 0 && $("#num2").length == 0 )
+            {
+                alert("Sorry! No number found!");
+                return;
+            }
+            var num1 = $("#num1").val();
+
+            var num2 = $("#num2").val();
+            $("#result").text(parseInt(num1) + parseInt(num2))
+                        .fadeOut(2000);
+
+            console.log($("input"));
+            var first = $("input").get(0);  //  converting jQuery object to DOM Object
+            console.log(first);
+        }
+
+        function reset() {
+            var textBoxes = $("input");
+            console.log(textBoxes);
+            textBoxes.val("0");
+        }
+        
+    </script>
+</head>
+<body>
+    <input id="num1" type="text" />
+    <input id="num2" type="text" />
+    <button id="b1">Add</button>
+    <button id="b2">Reset</button>
+
+    <p/>
+    <button id="b3">Disable Me!</button>
+
+    <h2 id="result"></h2>
+
+</body>
+</html>
