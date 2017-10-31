@@ -17,7 +17,7 @@ namespace mvcdemo.Models
         
         public int Fee { get; set; }
 
-        [Required]
+       
         public string Prereq { get; set; }
     }
 }

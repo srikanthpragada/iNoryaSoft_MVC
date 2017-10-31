@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Names</title>
+    <meta charset="utf-8" />
+    <script src="../Scripts/jquery-1.10.2.js"></script>
+    <script>
+        $(function () {
+            $.getJSON("names.json", {}, showNames);
+        }
+        );
+
+        function showNames(langs) {
+            console.log("Langs : " + langs);
+
+            $.each(langs,
+                function (idx, lang) {
+                    $("#names").append("<li>" + lang.name + " - " + lang.version + "</li>");
+                }
+            );
+
+        }
+    </script>
+</head>
+<body>
+    <h1>Names</h1>
+
+    <ul id="names"></ul>
+
+</body>
+</html>

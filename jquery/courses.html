@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Courses</title>
+	<meta charset="utf-8" />
+    <style>
+        .header { background-color : blue; color:white; font-weight :bold;}
+        body { font-family : Verdana; font-size : 12pt;}
+    </style>
+    <script src="../Scripts/jquery-1.10.2.js"></script>
+    <script>
+        var URL = "../api/WebCourses";
+
+        $(function () {
+            $.getJSON(URL, {}, showCourses);
+        }
+        );
+
+        function showCourses(courses) {
+             $.each(courses,
+                function (idx, course) {
+                    $("#courses").append("<tr><td>" + course.Title + "</td><td>" +
+                             course.Fee + "</td><td>" + course.Prereq + "</td></tr>");
+                }
+             );
+            
+        }
+
+        function addCourse() {
+            var data = {
+                "Title": $("#title").val(),
+                "Fee": $("#fee").val(),
+                "Prereq": $("#prereq").val()
+            };
+
+            $.ajax({
+                "url": URL,
+                "data": data,
+                "type": "post",
+                "success": function () { alert("Added Course Successfully!") },
+                "error": function () { alert("Sorry! Could not add course!") }
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Available Courses</h1>
+
+    <table id="courses" width="100%" cellpadding="5pt">
+        <tr class="header">
+         <th>Title</th>
+         <th>Fee</th>
+         <th>PreReq</th>
+        </tr>
+    </table>
+
+    <p/>
+    <h3>Add New Course</h3>
+    <input type="text" id="title" placeholder="Title"/>
+    <br/>
+    <input type="text" id="fee" placeholder="Fee" />
+    <br/>
+    <input type="text" id="prereq" placeholder="PreReq" />
+    <p/>
+    <button onclick="addCourse()">Add Course</button>
+
+</body>
+</html>

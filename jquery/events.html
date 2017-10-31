@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="../Scripts/jquery-1.10.2.js"></script>
+    <script>
+        $(document).ready(function () {
+            // get second button in document 
+            console.log($("button").eq(1));
+
+            $("#b1").click(
+                function (event) {
+                    console.log(event);
+                }
+            );
+
+            $("#a1").click(
+                function (event) {
+                    alert("You clicked on me!");
+                    event.preventDefault();
+                }
+            );
+
+            $("div").click(
+                function (event) {
+                    console.log(this.id + "  : " + this.innerText);
+                    event.stopPropagation();
+                }
+            );
+        });
+       
+    </script>
+</head>
+<body>
+    <button id="b1">Button1</button>
+    <p/>
+    <button id="b2">Button2</button>
+
+    <a href="" id="a1">Click on me!</a>
+
+    <p/>
+
+    <div id="p">
+         This is parent
+          <div id="c">
+              This is child 
+          </div>
+    </div>
+
+
+</body>
+</html>

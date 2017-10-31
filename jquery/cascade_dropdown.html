@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery AutoComplete Demo</title>
+    <meta charset="utf-8" />
+    <script src="../Scripts/jquery-1.10.2.js"></script>
+   
+    <script>
+       
+        $(document).ready(function () {
+            $.getJSON("../api/Dept", {}, populateDepts);
+             
+        }
+        );
+
+        function populateDepts(depts) {
+            $.each(depts,
+                function (idx, dept) {
+                    $("#depts").append("<option value='" + dept + "'>" + dept + "</option>");
+                }
+            );
+        }
+
+        function getEmps() {
+            $.getJSON("../api/Dept/" + $("#depts").val() , {}, populateEmps);
+        }
+
+        function populateEmps(emps) {
+            $("#emps").html("");
+            $.each(emps,
+                function (idx, emp) {
+                    $("#emps").append("<option value='" + emp + "'>" + emp + "</option>");
+                }
+            );
+        }
+
+
+    </script>
+</head>
+<body>
+    <h1>Cascading DropDown Demo </h1>
+    <select id="depts" onchange="getEmps()">
+         <option value="">Select</option>
+    </select>
+    <p/>
+    <select id="emps"></select>
+
+</body>
+</html>

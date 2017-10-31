@@ -146,9 +146,11 @@
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\CacheController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\DeptController.cs" />
     <Compile Include="Controllers\HelloController.cs" />
     <Compile Include="Controllers\STCoursesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\WebCoursesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -166,10 +168,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="jquery\cascade_dropdown.html" />
+    <Content Include="jquery\names.html" />
+    <Content Include="jquery\events.html" />
     <Content Include="jquery\add.html" />
+    <Content Include="jquery\courses.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="jquery\jquery.pdf" />
+    <Content Include="jquery\names.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
