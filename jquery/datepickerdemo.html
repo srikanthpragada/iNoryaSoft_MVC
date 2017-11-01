@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery DatePicker Demo</title>
+    <meta charset="utf-8" />
+    <script src="../Scripts/jquery-1.12.4.js"></script>
+    <script src="../Scripts/jquery-ui-1.12.1.js"></script>
+    <link href="../Content/themes/base/all.css" rel="stylesheet" />
+    <script>
+        $(document).ready(
+            function () {
+
+                $("input").datepicker(
+                    {
+                        dateFormat: "dd-mm-yy",
+                        changeMonth: true,
+                        changeYear: true
+                    });
+            }
+        );
+    </script>
+</head>
+<body>
+    <h1>jQuery UI DatePicker Demo</h1>
+    Date Of Joining : <input type="text"  />
+    <p/>
+    Date Of Leaving  : <input type="text" />
+
+</body>
+</html>

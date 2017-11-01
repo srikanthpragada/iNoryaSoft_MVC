@@ -21,6 +21,27 @@ namespace mvcdemo.Controllers
             return repo.GetCourses();
         }
 
+        public Course Get(int id)
+        {
+            return repo.GetCourseByID(id);
+        }
+
+        // WebCourses/id   -- DELETE 
+        public void Delete(int id)
+        {
+            bool done = repo.DeleteCourse(id);
+
+            if (!done)
+            {
+                HttpResponseMessage msg = new HttpResponseMessage(HttpStatusCode.InternalServerError);
+                throw new HttpResponseException(msg);
+            }
+            else
+            {
+                repo.Save();
+            }
+        }
+
         public void Post(Course course)
         {
             try {
@@ -33,5 +54,21 @@ namespace mvcdemo.Controllers
                 throw new HttpResponseException(msg);
             }
         }
+
+        public void Put(int id, Course course)
+        {
+            try
+            {
+                course.Id = id; 
+                repo.UpdateCourse(course);
+                repo.Save();
+            }
+            catch (Exception ex)
+            {
+                HttpResponseMessage msg = new HttpResponseMessage(HttpStatusCode.InternalServerError);
+                throw new HttpResponseException(msg);
+            }
+        }
+
     }
 }

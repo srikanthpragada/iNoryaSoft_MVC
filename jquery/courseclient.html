@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../Scripts/jquery-1.12.4.js"></script>
+    <style>
+        body {
+            font-family: Verdana;
+            font-size: 12pt;
+        }
+
+        .header {
+            background-color: blue;
+            color: white;
+            font-weight: bold;
+        }
+
+
+        h2 {
+            color: red;
+        }
+
+        td {
+            text-align: center;
+        }
+    </style>
+    <script type="text/javascript">
+        var URL = "../api/WebCourses";
+
+        function getCourse(id) {
+            $("#txtId").val(id);
+            var url = URL + "/" + id;
+            $.getJSON(url, {}, showInfo);
+        }
+        function showInfo(data) {
+            $("#error").html("");
+            if (data) {
+                $("#txtTitle").val(data.Title);
+                $("#txtFee").val(data.Fee);
+                $("#txtPrereq").val(data.Prereq);
+            }
+            else
+                $("#error").html("Sorry! Course ID Not Found");
+        }
+
+        function deleteCourse(id) {
+            if (!confirm("Do you want to delete current course?"))
+                return;
+            var url = URL + "/" + id;
+            $.ajax({
+                "url": url,
+                "type": "delete",
+                "success": deleted,
+                "error": displayError
+            });
+        }
+
+        function deleted() {
+            getCourses();
+            clearFields();
+        }
+
+
+        function getCourses() {
+            $.getJSON(URL, {}, showAll);
+        }
+
+        function showAll(courses) {
+            $("#courses").html("");
+            $.each(courses,
+              function (idx, course) {
+                  $("#courses").append("<tr><td>" + course.Id + "</td><td>" + course.Title + "</td><td>" +
+                           course.Fee + "</td><td>" + course.Prereq +
+                           "</td><td><button onclick='deleteCourse(" + course.Id +
+                              ")'>Delete</button>&nbsp;<button onclick='getCourse(" + course.Id + ")'>Edit</button></td></tr>"
+                           );
+              }
+           );
+        }
+
+        function addCourse() {
+            var data = {
+                "Title": $("#txtTitle").val(),
+                "Fee": $("#txtFee").val(),
+                "Prereq": $("#txtPrereq").val()
+            };
+
+            $.ajax({
+                "url": URL,
+                "data": data,
+                "type": "post",
+                "success": function () {
+                    alert("Added Course Successfully!");
+                    getCourses();
+                    clearFields();
+                },
+                "error": function () { alert("Sorry! Could not add course!") }
+            });
+        }
+
+        function displayError(xhr, status, error) {
+            alert("Sorry! Could not complete task due to error!" + error);
+        }
+
+
+        function updateCourse() {
+            var url = URL + "/" + $("#txtId").val();
+            var data = {
+                "Title": $("#txtTitle").val(),
+                "Fee": $("#txtFee").val(),
+                "Prereq": $("#txtPrereq").val()
+            };
+
+            $.ajax({
+                "url": url,
+                "data": data,
+                "type": "put",
+                "success": updated,
+                "error": displayError
+            });
+        }
+
+        function updated() {
+            getCourses();
+
+        }
+
+        function clearFields() {
+            $("input[type='text']").val("");
+        }
+
+        // document ready
+        $(function () {
+            getCourses();
+        }
+        );
+
+    </script>
+</head>
+<body>
+    <h2>Courses Manager</h2>
+    <input type="text" id="txtId" readonly placeholder="Id" />
+    <p />
+    <input type="text" id="txtTitle" placeholder="Title" />
+    <p />
+    <input type="text" id="txtFee" placeholder="Fee" />
+    <p />
+    <input type="text" id="txtPrereq" placeholder="Prereq" />
+    <p />
+    <button onclick="addCourse()">Add Course</button>
+    <button onclick="updateCourse()">Update Course</button>
+
+    <p />
+
+    <fieldset>
+        <legend>Courses</legend>
+        <table width="100%" cellpadding="5pt">
+            <tr class="header">
+                <th>Id</th>
+                <th>Title</th>
+                <th>Fee</th>
+                <th>PreReq</th>
+                <th></th>
+            </tr>
+            <tbody id="courses"></tbody>
+        </table>
+    </fieldset>
+
+
+</body>
+</html>

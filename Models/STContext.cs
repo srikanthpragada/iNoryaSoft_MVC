@@ -12,7 +12,6 @@ namespace mvcdemo.Models
         {
 
         }
-
         public DbSet<Course> Courses { get; set; }
     }
 
